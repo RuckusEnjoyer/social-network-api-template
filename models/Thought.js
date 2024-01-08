@@ -6,10 +6,14 @@ const thoughtSchema = new Schema(
         thoughtText: {
             type: String,
             required: true,
-
+            minLength: 1,
+            maxLength: 280
         },
         createdAt: {
-
+            type: Date,
+            //Date.now() is a function that takes from EPOCH time
+            default: Date.now(),
+            get: time => new Date(time)
         },
         username: {
             type: String,
