@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, Types } = require('mongoose');
 
 const reactionSchema = new Schema(
     {
@@ -21,14 +21,15 @@ const reactionSchema = new Schema(
         createdAt: {
             type: Date,
             //Date.now() is a function that takes from EPOCH time
-            default: Date.now(),
+            default: Date.now,
             get: time => new Date(time)
         }
     },
     {
         toJSON: {
-            virtuals: true
-        }
+            getters: true
+        },
+        id: false,
     }
 )
 

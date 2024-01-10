@@ -8,21 +8,27 @@ router.route('/')
         res.json(users)
     } catch(err){
         res.status(500).json(err);
+        console.log(err)
     }
 })
 .post(async (req, res) => {
     try{
         const user = await User.create(req.body);
+        res.json(user)
     } catch(err){
         res.status(500).json(err);
+        console.log(err)
+
     }
 })
 .put(async (req, res) => {
     try{
         const user = await User.findOneAndUpdate({ _id : req.params.userId});
-        
+        res.json(user)
     } catch(err){
         res.status(500).json(err);
+        console.log(err)
+
     }
 })
 .delete(async (req, res) => {
@@ -32,8 +38,11 @@ router.route('/')
         if(!user) {
             return res.status(404).json({ message: 'No User Found! :('})
         }
+        res.json('User Deleted!')
     } catch(err){
         res.status(500).json(err);
+        console.log(err)
+
     }
 });
 
@@ -47,6 +56,8 @@ router.get('/:userId', async (req, res) => {
         res.json(user)
     } catch(err){
         res.status(500).json(err);
+        console.log(err)
+
     }
 })
 
